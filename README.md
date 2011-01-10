@@ -6,7 +6,7 @@ jquery.currencies.js
 
 ## Description
 
-jquery.currencies.js expands the currencies.js library provided by Shopify and has be used in conjunction with it. 
+jquery.currencies.js expands the currencies.js library provided by Shopify and has to be used in conjunction with it. 
 
 While currencies.js allows you to convert a money amount from one currency to another, jquery.currencies.js provides a function that converts all money amounts on a web page and shows a _formatted_ result, with currency symbol and descriptor.
 
@@ -24,7 +24,7 @@ To save a picked currency to a cookie, use the following line of code, passing t
 
     Currency.cookie.write('CAD');
 
-To read the currency from the 'currencies' cookie, use the following line of code:
+To read the currency code saved to your 'currencies' cookie, use the following code:
  
     var cookieCurrency = Currency.cookie.read();
  
@@ -34,7 +34,7 @@ To convert formatted money (with or without the currency code and descriptor) to
 
     Currency.convertAll(oldCurrency, newCurrency, selector, format);
 
-The parameters _oldCurrency_ and _newCurrency_ must be set to the 3-letter currency codes of the from and to currencies.
+The parameters _oldCurrency_ and _newCurrency_ must be set to the 3-letter currency codes of the FROM and TO currencies.
  
 The parameter _selector_ is a CSS selector that tells the function where to find the money on the page. It is optional. If it is not used, the function will look for all span elements on the page with a class attribute set to 'money', and will convert the money in those elements.
 
@@ -50,7 +50,7 @@ Calling the function without _format_ is the same as calling the function like s
 
 ## Optional global settings
 
-Add the following line of JavaScript before you own code, if you want the formatted money to show the currency descriptor:
+Add the following line of JavaScript before you own code, if you do not want the formatted money to show the currency descriptor:
 
     Currency.format = 'money_format';
  
