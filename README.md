@@ -70,7 +70,7 @@ currencies.js must be included before jquery.currencies.min.js.
 
 ## Author
 
-jquery.currencies.js was created and is maintained by Caroline Schnapp <mllegeorgesand AT gmail DOT com>.
+jquery.currencies.js was created and is maintained by Caroline Schnapp mllegeorgesand AT gmail DOT com.
   
 ## License
 
