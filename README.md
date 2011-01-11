@@ -47,6 +47,8 @@ The parameter __format__ is optional and can take on the value 'money_format' or
 Calling the function without _format_ is the same as calling the function like so:
 
     Currency.convertAll('CAD', 'USD', 'span.money', 'money_with_currency_format');
+    
+Important: the convertAll method updates the 'currencies' cookie with _newCurrency_ and it also sets a global property that remembers what the current currency is: Currency.currentCurrency. Why? The cookie needs only be read once, ie. when the page loads, and one must keep a copy of the old value to send both old and new values to the converting drone.
 
 ## Optional global settings
 
