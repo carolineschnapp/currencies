@@ -66,7 +66,9 @@ If you don't use the above line of code, the name of your cookie will be 'curren
 
 ## Dependencies
 
-jquery.min.currencies.js requires Shopify's library currencies.js.
+jQuery >= 1.3.1
+
+jquery.min.currencies.js also requires Shopify's library currencies.js.
 
 currencies.js must be included before jquery.currencies.min.js.
 
