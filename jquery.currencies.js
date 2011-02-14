@@ -204,8 +204,14 @@ Currency.format = 'money_with_currency_format';
 
 Currency.convertAll = function(oldCurrency, newCurrency, selector, format) {
   jQuery(selector || '.money').each(function() {
-    var cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10), oldCurrency, newCurrency);
+    var cents = 0.0;
     var format = Currency[format || Currency.format][newCurrency] || '{{amount}}';
+    if (format.indexOf('{{amount_no_decimals}}') !== -1) {
+      cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)*100, oldCurrency, newCurrency);
+    }
+    else { 
+      cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10), oldCurrency, newCurrency);
+    }
     jQuery(this).html(Currency.formatMoney(cents, format));
   });
   this.currentCurrency = newCurrency;
