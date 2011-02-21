@@ -17,7 +17,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
  *
- */
+ */ 
 
 if (typeof Currency === 'undefined') {
   var Currency = {};
