@@ -181,10 +181,10 @@ Currency.formatMoney = function(cents, format) {
   var formatString = (format || this.money_format);
   switch(formatString.match(patt)[1]) {
   case 'amount':
-    value = floatToString(cents/100.0, 2).replace(/(\d+)(\d{3}[\.,]?)/,'$1 $2');
+    value = floatToString(cents/100.0, 2).replace(/(\d+)(\d{3}[\.,]?)/,'$1,$2');
     break;
   case 'amount_no_decimals':
-    value = floatToString(cents/100.0, 0).replace(/(\d+)(\d{3}[\.,]?)/,'$1 $2');
+    value = floatToString(cents/100.0, 0).replace(/(\d+)(\d{3}[\.,]?)/,'$1,$2');
     break;
   case 'amount_with_comma_separator':
     value = floatToString(cents/100.0, 2).replace(/\./, ',').replace(/(\d+)(\d{3}[\.,]?)/,'$1.$2');
