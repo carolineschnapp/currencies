@@ -13,7 +13,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
 /*
  * Currency tools
  *
- * Copyright (c) 2012 Caroline Schnapp (mllegeorgesand@gmail.com)
+ * Copyright (c) 2013 Caroline Schnapp (mllegeorgesand@gmail.com)
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
  *
@@ -222,28 +222,35 @@ Currency.money_format = {
 };
 
 Currency.formatMoney = function(cents, format) {
+  if (typeof cents == 'string') cents = cents.replace('.','');
   var value = '';
   var patt = /\{\{\s*(\w+)\s*\}\}/;
   var formatString = (format || this.money_format);
+  function addCommas(moneyString) {
+    return moneyString.replace(/(\d+)(\d{3}[\.,]?)/,'$1,$2');
+  }
   switch(formatString.match(patt)[1]) {
   case 'amount':
-    value = floatToString(cents/100.0, 2).replace(/(\d+)(\d{3}[\.,]?)/,'$1,$2');
+    value = addCommas(floatToString(cents/100.0, 2));
     break;
   case 'amount_no_decimals':
-    value = floatToString(cents/100.0, 0).replace(/(\d+)(\d{3}[\.,]?)/,'$1,$2');
+    value = addCommas(floatToString(cents/100.0, 0));
     break;
   case 'amount_with_comma_separator':
-    value = floatToString(cents/100.0, 2).replace(/\./, ',').replace(/(\d+)(\d{3}[\.,]?)/,'$1.$2');
+    value = floatToString(cents/100.0, 2).replace(/\./, ',');
     break;
-  }    
+  case 'amount_no_decimals_with_comma_separator':
+    value = addCommas(floatToString(cents/100.0, 0)).replace(/\./, ',');
+    break;
+  }
   return formatString.replace(patt, value);
 };
 
 function floatToString(numeric, decimals) {
-  var amount = numeric.toFixed(decimals).toString();
+  var amount = numeric.toFixed(decimals).toString();  
   if(amount.match(/^\.\d+/)) { return "0"+amount; }
   else { return amount; }
-}
+};
 
 Currency.currentCurrency = '';
 Currency.format = 'money_with_currency_format';
@@ -261,7 +268,7 @@ Currency.convertAll = function(oldCurrency, newCurrency, selector, format) {
       var cents = 0.0;
       var oldFormat = Currency[format || Currency.format][oldCurrency] || '{{amount}}';
       var newFormat = Currency[format || Currency.format][newCurrency] || '{{amount}}';
-      if (oldFormat.indexOf('{{amount_no_decimals}}') !== -1) {
+      if (oldFormat.indexOf('amount_no_decimals') !== -1) {
         cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)*100, oldCurrency, newCurrency);
       }
       else { 
