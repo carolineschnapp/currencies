@@ -256,7 +256,7 @@ Currency.currentCurrency = '';
 Currency.format = 'money_with_currency_format';
 
 Currency.convertAll = function(oldCurrency, newCurrency, selector, format) {
-  jQuery(selector || '.money').each(function() {
+  jQuery(selector || 'span.money').each(function() {
     // If the amount has already been converted, we leave it alone.
     if (jQuery(this).attr('data-currency') === newCurrency) return;
     // If we are converting to a currency that we have saved, we will use the saved amount.
