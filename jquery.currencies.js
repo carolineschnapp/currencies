@@ -128,7 +128,8 @@ Currency.money_with_currency_format = {
     "UYU": "${{amount_with_comma_separator}} UYU",
     "VEB": "Bs. {{amount_with_comma_separator}} VEB",
     "VND": "{{amount_no_decimals_with_comma_separator}} VND",
-    "ZMK": "ZMK{{amount_no_decimals_with_comma_separator}}"
+    "ZMK": "ZMK{{amount_no_decimals_with_comma_separator}}",
+    "XBT": "{{amount_no_decimals}} BTC"
 };
 
 Currency.money_format = {
@@ -218,7 +219,8 @@ Currency.money_format = {
   "UYU": "${{amount_with_comma_separator}}",
   "VEB": "Bs. {{amount_with_comma_separator}}",
   "VND": "{{amount_no_decimals_with_comma_separator}}₫",
-  "ZMK": "K{{amount_no_decimals_with_comma_separator}}"
+  "ZMK": "K{{amount_no_decimals_with_comma_separator}}",
+  "XBT": "{{amount_no_decimals}} BTC"
 };
 
 Currency.formatMoney = function(cents, format) {
