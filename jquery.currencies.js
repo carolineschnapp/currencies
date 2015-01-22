@@ -13,7 +13,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
 /*
  * Currency tools
  *
- * Copyright (c) 2014 Caroline Schnapp (mllegeorgesand@gmail.com)
+ * Copyright (c) 2015 Caroline Schnapp (mllegeorgesand@gmail.com)
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
  *
@@ -187,8 +187,8 @@ Currency.moneyFormats = {
     "money_with_currency_format":"kr.{{amount_with_comma_separator}}"
   },
   "DOP":{
-    "money_format":"RD$ {{amount_with_comma_separator}}",
-    "money_with_currency_format":"RD$ {{amount_with_comma_separator}}"
+    "money_format":"RD$ {{amount}}",
+    "money_with_currency_format":"RD$ {{amount}}"
   },
   "XCD":{
     "money_format":"${{amount}}",
