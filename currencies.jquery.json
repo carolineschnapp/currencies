@@ -1,0 +1,32 @@
+{
+  "name": "currencies",
+  "title": "Shopify Currencies",
+  "description": "jquery.currencies.js expands the currencies.js library provided by Shopify and has to be used in conjunction with it.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/carolineschnapp/currencies",
+  "author": {
+    "name": "Caroline Schnapp",
+    "email": "mllegeorgesand@gmail",
+    "url": "http://github.com/carolineschnapp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carolineschnapp/currencies.git"
+  },
+  "bugs": "https://github.com/carolineschnapp/currencies/issues",
+  "dependencies": {
+    "jquery": ">=1.7.2"
+  },
+  "keywords": [
+    "ecosystem:jquery",
+    "jquery-plugin",
+    "shopify",
+    "currency"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "currencies",
+  "description": "jquery.currencies.js expands the currencies.js library provided by Shopify and has to be used in conjunction with it.",
+  "version": "1.0.0",
+  "main": [
+    "jquery.currencies.js"
+  ],
+  "keywords": [
+    "ecosystem:jquery",
+    "jquery-plugin",
+    "shopify",
+    "currency"
+  ],
+  "authors": [
+    {
+      "name": "Caroline Schnapp",
+      "email": "mllegeorgesand@gmail.com",
+      "homepage": "https://github.com/carolineschnapp"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.7.2"
+  },
+  "ignore": []
+}
