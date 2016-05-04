@@ -17,7 +17,7 @@ jQuery.cookie=function(b,j,m){if(typeof j!="undefined"){m=m||{};if(j===null){j="
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/mit-license.php
  *
- */ 
+ */
 
 if (typeof Currency === 'undefined') {
   var Currency = {};
@@ -570,12 +570,12 @@ Currency.formatMoney = function(cents, format) {
   }
   return formatString.replace(placeholderRegex, value);
 };
-  
+
 Currency.currentCurrency = '';
 
 Currency.format = 'money_with_currency_format';
 
-Currency.convertAll = function(oldCurrency, newCurrency, selector, format) {
+Currency.convertAll = function(oldCurrency, newCurrency, selector, format, shopCurrency) {
   jQuery(selector || 'span.money').each(function() {
     // If the amount has already been converted, we leave it alone.
     if (jQuery(this).attr('data-currency') === newCurrency) return;
@@ -585,17 +585,29 @@ Currency.convertAll = function(oldCurrency, newCurrency, selector, format) {
     }
     else {
       // Converting to Y for the first time? Let's get to it!
+
+      // If there is no data-currency attribute on the element being converted,
+      // the currency has not been converted yet and is probably in the regular shop currency.
+      // If we assume the element is in oldCurrency when it's really in shopCurrency,
+      // things can go wrong.
+      // This might occur when a new currency element is added to the DOM between conversions
+      var fromCurrency = oldCurrency;
+      if (jQuery(this).attr('data-currency') == null) {
+        // For this iteration we will use the shopDefaultCurrency instead of the requested oldCurrency.
+        fromCurrency = shopCurrency || oldCurrency; // If shopDefaultCurrency was not passed in, we will have to use oldCurrency anyway
+      }
+
       var cents = 0.0;
-      var oldFormat = Currency.moneyFormats[oldCurrency][format || Currency.format] || '{{amount}}';
+      var oldFormat = Currency.moneyFormats[fromCurrency][format || Currency.format] || '{{amount}}';
       var newFormat = Currency.moneyFormats[newCurrency][format || Currency.format] || '{{amount}}';
       if (oldFormat.indexOf('amount_no_decimals') !== -1) {
-        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)*100, oldCurrency, newCurrency);
+        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)*100, fromCurrency, newCurrency);
       }
-      else if (oldCurrency === 'JOD' || oldCurrency == 'KWD' || oldCurrency == 'BHD') {
-        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)/10, oldCurrency, newCurrency);
+      else if (fromCurrency === 'JOD' || fromCurrency == 'KWD' || fromCurrency == 'BHD') {
+        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)/10, fromCurrency, newCurrency);
       }
-      else { 
-        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10), oldCurrency, newCurrency);
+      else {
+        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10), fromCurrency, newCurrency);
       }
       var newFormattedAmount = Currency.formatMoney(cents, newFormat);
       jQuery(this).html(newFormattedAmount);
