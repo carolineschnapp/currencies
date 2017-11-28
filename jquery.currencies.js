@@ -339,7 +339,7 @@ Currency.moneyFormats = {
     "money_with_currency_format":"Dh {{amount}} MAD"
   },
   "MNT":{
-    "money_format":"{{amount_no_decimals}} &#8366",
+    "money_format":"{{amount_no_decimals}} &#8366;",
     "money_with_currency_format":"{{amount_no_decimals}} MNT"
   },
   "MZN":{
