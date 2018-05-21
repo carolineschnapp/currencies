@@ -585,18 +585,9 @@ Currency.convertAll = function(oldCurrency, newCurrency, selector, format) {
     }
     else {
       // Converting to Y for the first time? Let's get to it!
-      var cents = 0.0;
       var oldFormat = Currency.moneyFormats[oldCurrency][format || Currency.format] || '{{amount}}';
       var newFormat = Currency.moneyFormats[newCurrency][format || Currency.format] || '{{amount}}';
-      if (oldFormat.indexOf('amount_no_decimals') !== -1) {
-        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)*100, oldCurrency, newCurrency);
-      }
-      else if (oldCurrency === 'JOD' || oldCurrency == 'KWD' || oldCurrency == 'BHD') {
-        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10)/10, oldCurrency, newCurrency);
-      }
-      else { 
-        cents = Currency.convert(parseInt(jQuery(this).html().replace(/[^0-9]/g, ''), 10), oldCurrency, newCurrency);
-      }
+      var cents = Currency.convert(parseFloat(jQuery(this).html().replace(/^[^0-9]+|[^0-9.]/g, ''), 10) * 100, oldCurrency, newCurrency);
       var newFormattedAmount = Currency.formatMoney(cents, newFormat);
       jQuery(this).html(newFormattedAmount);
       jQuery(this).attr('data-currency-'+newCurrency, newFormattedAmount);
