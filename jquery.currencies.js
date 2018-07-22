@@ -519,8 +519,8 @@ Currency.moneyFormats = {
     "money_with_currency_format":"{{amount_no_decimals_with_comma_separator}} VND"
   },
   "XBT":{
-    "money_format":"{{amount_no_decimals}} BTC",
-    "money_with_currency_format":"{{amount_no_decimals}} BTC"
+    "money_format":"&#x0243 {{amount_bitcoin}} BTC",
+    "money_with_currency_format":"&#x0243 {{amount_bitcoin}} BTC"
   },
   "XOF":{
     "money_format":"CFA{{amount}}",
@@ -533,9 +533,9 @@ Currency.moneyFormats = {
 };
 
 Currency.formatMoney = function(cents, format) {
-  if (typeof Shopify.formatMoney === 'function') {
+/*  if (typeof Shopify.formatMoney === 'function') {
     return Shopify.formatMoney(cents, format);
-  }
+  }*/
   if (typeof cents == 'string') { cents = cents.replace('.',''); }
   var value = '';
   var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
@@ -557,6 +557,9 @@ Currency.formatMoney = function(cents, format) {
   switch(formatString.match(placeholderRegex)[1]) {
     case 'amount':
       value = formatWithDelimiters(cents, 2);
+      break;
+    case 'amount_bitcoin':
+      value = formatWithDelimiters(cents, 4);
       break;
     case 'amount_no_decimals':
       value = formatWithDelimiters(cents, 0);
